@@ -1,0 +1,45 @@
+resources:
+  - name: sameer_feature_table_3
+    resource_type: feature_table_model
+    resource_spec:
+      validity_time: 24h # 1 day
+      id_stitching:
+        entity_key: user
+        main_id_type: main_id
+        exclude_id_types:
+          - exclude_id
+        inputs:
+          # For every input model, we need to know the column expression which gives identity of each row in the column.
+          - name: tbl_a
+            ref:
+              table: Temp_tbl_a
+              timestamp_col: insert_ts
+              ids:
+                - sql: "id1"
+                  type: test_id
+                - sql: "id2"
+                  type: test_id
+          - name: tbl_b
+            ref:
+              table: Temp_tbl_b
+              timestamp_col: timestamp
+              ids:
+                - sql: "id1"
+                  type: test_id
+                - sql: "id2"
+                  type: test_id
+      features:
+        - tablefeature:
+            name: a_max
+            table: tbl_a
+            value: max(tbl_a.num_a)
+        - tablevar:
+            name: a_num_min
+            table: tbl_a
+            value: min(tbl_a.num_a)
+        - macro:
+            name: a_num_range
+            value: a_max - a_num_min
+        - feature:
+            name: a_range
+            value: macro(a_num_range)
