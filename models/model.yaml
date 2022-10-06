@@ -1,5 +1,5 @@
 models:
-  - name: sameer_test_id_stitcher
+  - name: test_id_stitcher
     model_type: id_stitcher
     model_spec:
       entity_key: user
@@ -11,45 +11,3 @@ models:
         - input: tbl_a
         - input: tbl_b
         - input: tbl_c
-  - name: sameer_test_feature_table
-    model_type: feature_table_model
-    model_spec:
-      validity_time: 24h # 1 day
-      id_stitching:
-        model: sameer_test_id_stitcher
-      features:
-        - tablefeature:
-            name: a_max
-            ref:
-              input: tbl_a
-            value: max(tbl_a.num_a)
-        - tablevar:
-            name: a_num_min
-            ref:
-              input: tbl_a
-            value: min(tbl_a.num_a)
-        - macro:
-            name: a_num_range
-            value: a_max - a_num_min
-        - feature:
-            name: a_range
-            value: macro(a_num_range)
-        - tablevar:
-            name: c_num_max
-            ref:
-              input: tbl_c
-            value: max(tbl_c.num_c)
-        - feature:
-            name: c_max
-            value: c_num_max
-        - tablefeature:
-            name: c_max_plus_a_max
-            ref:
-                input: tbl_c
-            value: max(tbl_c.num_c + a_max)
-        - tablefeature:
-            name: c_max_where_c_gte_2x_amax
-            ref:
-                input: tbl_c
-            value: max(tbl_c.num_c)
-            filter: tbl_c.num_c >= (2 * a_max)
