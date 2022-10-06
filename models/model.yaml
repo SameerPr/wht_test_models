@@ -16,7 +16,7 @@ models:
     model_spec:
       validity_time: 24h # 1 day
       id_stitching:
-        model: test_id_stitcher
+        model: sameer_test_id_stitcher
       features:
         - tablefeature:
             name: a_max
