@@ -7,8 +7,6 @@ inputs:
         type: test_id
       - sql: "id2"
         type: test_id
-      - sql: "id3"
-        type: exclude_id
   - name: tbl_b
     table: Temp_tbl_b
     timestamp_col: timestamp
@@ -16,8 +14,6 @@ inputs:
       - sql: "id1"
         type: test_id
       - sql: "id2"
-        type: test_id
-      - sql: "id3"
         type: test_id
   - name: tbl_c
     table: Temp_tbl_c
