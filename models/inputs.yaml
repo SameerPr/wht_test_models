@@ -1,24 +1,20 @@
+# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 inputs:
-  - name: tbl_a
-    table: Temp_tbl_a
-    timestamp_col: insert_ts
-    ids:
-      - sql: TRIM(COALESCE(NULL, id1))
-        type: test_id
-      - sql: "id2"
-        type: test_id
-  - name: tbl_b
-    table: Temp_tbl_b
+  - name: rsIdentifies
+    table: rudder_events_production.web.identifies
     timestamp_col: timestamp
     ids:
-      - sql: "id1"
-        type: test_id
-      - sql: "id2"
-        type: test_id
-  - name: tbl_c
-    table: Temp_tbl_c
+      - sql: "user_id"
+        type: user_id
+      - sql: "anonymous_id"
+        type: anonymous_id
+      - sql: "lower(email)"
+        type: email
+  - name: rsTracks
+    table: rudder_events_production.web.tracks
+    timestamp_col: timestamp
     ids:
-      - sql: "id1"
-        type: test_id
-      - sql: "id2"
-        type: test_id
+      - sql: "user_id"
+        type: user_id
+      - sql: "anonymous_id"
+        type: anonymous_id
