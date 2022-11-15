@@ -1,7 +1,7 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
   - name: domain_profile_id_stitcher
-    model_type: id_stitcher
+    model_type: id_stitch
     model_spec:
       validity_time: 24h # 1 day
       entity_key: user
@@ -9,7 +9,7 @@ models:
       edge_sources:
         - inputs/rsIdentifies
         - inputs/rsTracks
-  # Remove the section below, if you don't want to generate a feature table
+# Remove the section below, if you don't want to generate a feature table
   - name: domain_profile
     model_type: feature_table_model
     model_spec:
