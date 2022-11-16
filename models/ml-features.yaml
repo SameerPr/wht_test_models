@@ -1,7 +1,7 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 models:
   - name: domain_profile_id_stitcher
-    model_type: id_stitch
+    model_type: id_stitcher
     model_spec:
       validity_time: 24h # 1 day
       entity_key: user
