@@ -5,7 +5,7 @@ inputs:
     timestamp_col: timestamp
     ids:
       - sql: "user_id"
-        type: user_id
+        type: user
       - sql: "anonymous_id"
         type: anonymous_id
       - sql: "lower(email)"
