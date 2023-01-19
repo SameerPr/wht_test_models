@@ -11,7 +11,7 @@ inputs:
         type: email
     name: rsIdentifies
     occurred_at_col: timestamp
-    table: analytics_db.blastradio_data.blast_rs_identifies
+    table: demo_rs_identifies
   - ids:
       - entity: user
         select: user_id
@@ -21,4 +21,4 @@ inputs:
         type: anonymous_id
     name: rsTracks
     occurred_at_col: timestamp
-    view: rudder_test_events.faker_schema.view_may22_blast_rs_tracks
+    view: view_may22_demo_rs_tracks
