@@ -1,3 +1,4 @@
+connection: test
 entities:
   - id_stitcher: models/customer_stripe_id_stitcher
     id_types:
@@ -44,9 +45,7 @@ id_types:
         value: NaN
     name: subscription_id
 include_untimed: true
-model_retention_policy: 0Days
 model_folders:
   - models
 name: stripe_features
-profile: test
-schema_version: 18
+schema_version: 25

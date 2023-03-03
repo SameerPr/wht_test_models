@@ -1,7 +1,5 @@
 models:
-  - name: customer_stripe_id_stitcher
-    model_type: id_stitcher
-    model_spec:
+  - model_spec:
       edge_sources:
         - inputs/stripeCustomers
         - inputs/stripeCharges
@@ -13,6 +11,8 @@ models:
       entity_key: customer
       main_id_type: main_id
       validity_time: 24h
+    model_type: id_stitcher
+    name: customer_stripe_id_stitcher
 #  - name: subscription_stripe_id_stitcher2
 #    model_type: id_stitcher
 #    model_spec:
