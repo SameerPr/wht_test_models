@@ -9,13 +9,6 @@ entities:
       - subscription_id
       - charge_id
     name: customer
-#  - id_stitcher: models/subscription_stripe_id_stitcher
-#    id_types:
-#      - subscription_main_id
-#      - invoice_id
-#      - subscription_id
-#      - charge_id
-#    name: subscription
 id_types:
   - name: subscription_main_id
   - filters:
@@ -48,4 +41,4 @@ include_untimed: true
 model_folders:
   - models
 name: stripe_features
-schema_version: 25
+schema_version: 26
