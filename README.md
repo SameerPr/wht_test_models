@@ -2,10 +2,3 @@
 
 Sample test wht projects
 
-<!--#
-NOUN=dog
-ATTRIBUTION=Sameer Prajapati
-$-->
-
-"Say hi to your {{ NOUN }} for me," {{ ATTRIBUTION }}
-
