@@ -1,51 +1,31 @@
-connection: test
 entities:
-  - id_stitcher: models/customer_stripe_id_stitcher
+  - id_stitcher: models/domain_profile_id_stitcher
     id_types:
       - main_id
-      - customer_id
-      - invoice_id
-      - balance_transaction_id
-      - subscription_id
-      - charge_id
-    name: customer
-#  - id_stitcher: models/subscription_stripe_id_stitcher
-#    id_types:
-#      - subscription_main_id
-#      - invoice_id
-#      - subscription_id
-#      - charge_id
-#    name: subscription
+      - user_id
+      - anonymous_id
+      - email
+    name: user
 id_types:
-  - name: subscription_main_id
   - filters:
       - type: exclude
         value: ""
       - type: exclude
+        value: unknown
+      - type: exclude
         value: NaN
-    name: balance_transaction_id
+    name: anonymous_id
   - filters:
+      - regex: .+@.+
+        type: include
       - type: exclude
-        value: ""
-      - type: exclude
-        value: NaN
-    name: charge_id
-  - name: customer_id
-  - filters:
-      - type: exclude
-        value: ""
-      - type: exclude
-        value: NaN
-    name: invoice_id
+        value: test@company.com
+    name: email
   - name: main_id
-  - filters:
-      - type: exclude
-        value: ""
-      - type: exclude
-        value: NaN
-    name: subscription_id
+  - name: user_id
 include_untimed: true
 model_folders:
   - models
-name: stripe_features
-schema_version: 24
+name: sample_attribution
+profile: test
+schema_version: 18

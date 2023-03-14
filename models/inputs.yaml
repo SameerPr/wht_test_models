@@ -1,98 +1,24 @@
 inputs:
   - ids:
-      - entity: customer
-        select: customers_id
-        type: customer_id
-    name: stripeCustomers
+      - entity: user
+        select: user_id
+        type: user_id
+      - entity: user
+        select: anonymous_id
+        type: anonymous_id
+      - entity: user
+        select: lower(email)
+        type: email
+    name: rsIdentifies
     occurred_at_col: timestamp
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_customers
+    table: analytics_db.blastradio_data.blast_rs_identifies
   - ids:
-      - entity: customer
-        select: customer
-        type: customer_id
-      - entity: customer
-        select: invoice
-        type: invoice_id
-        #      - entity: subscription
-        #        select: invoice
-        #        type: invoice_id
-      - entity: customer
-        select: charges_id
-        type: charge_id
-        #      - entity: subscription
-        #        select: charges_id
-        #        type: charge_id
-      - entity: customer
-        select: balance_transaction
-        type: balance_transaction_id
-        #      - entity: subscription
-        #        select: balance_transaction
-        #        type: balance_transaction_id
-    name: stripeCharges
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_charges
-  - ids:
-      - entity: customer
-        select: invoices_id
-        type: invoice_id
-        #      - entity: subscription
-        #        select: invoices_id
-        #        type: invoice_id
-        #      - entity: subscription
-        #        select: subscription
-        #        type: subscription_id
-      - entity: customer
-        select: subscription
-        type: subscription_id
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeInvoices
-    occurred_at_col: to_timestamp(created)
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_invoices
-  - ids:
-      - entity: customer
-        select: id
-        type: balance_transaction_id
-        #      - entity: subscription
-        #        select: id
-        #        type: balance_transaction_id
-    name: stripeBalanceHistory
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_balance_history
-  - ids:
-      - entity: customer
-        select: subscriptions_id
-        type: subscription_id
-        #      - entity: subscription
-        #        select: subscriptions_id
-        #        type: subscription_id
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeSubscriptions
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_subscriptions
-  - ids:
-      - entity: customer
-        select: charge
-        type: charge_id
-      - entity: customer
-        select: balance_transaction
-        type: balance_transaction_id
-        #      - entity: subscription
-        #        select: charge
-        #        type: charge_id
-        #      - entity: subscription
-        #        select: balance_transaction
-        #        type: balance_transaction_id
-    name: stripeRefunds
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_refunds
-  - ids:
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeInvoicesView
-    occurred_at_col: invoice_created_timestamp
-    view: rudderstack_test_db.data_apps_simulated_stripe.STG_INVOICES_DATA
+      - entity: user
+        select: user_id
+        type: user_id
+      - entity: user
+        select: anonymous_id
+        type: anonymous_id
+    name: rsTracks
+    occurred_at_col: timestamp
+    view: rudder_test_events.faker_schema.view_may22_blast_rs_tracks
