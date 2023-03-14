@@ -13,21 +13,21 @@ inputs:
       - entity: customer
         select: invoice
         type: invoice_id
-#      - entity: subscription
-#        select: invoice
-#        type: invoice_id
+        #      - entity: subscription
+        #        select: invoice
+        #        type: invoice_id
       - entity: customer
         select: charges_id
         type: charge_id
-#      - entity: subscription
-#        select: charges_id
-#        type: charge_id
+        #      - entity: subscription
+        #        select: charges_id
+        #        type: charge_id
       - entity: customer
         select: balance_transaction
         type: balance_transaction_id
-#      - entity: subscription
-#        select: balance_transaction
-#        type: balance_transaction_id
+        #      - entity: subscription
+        #        select: balance_transaction
+        #        type: balance_transaction_id
     name: stripeCharges
     occurred_at_col: created
     table: rudderstack_test_db.data_apps_simulated_stripe.stripe_charges
@@ -35,12 +35,12 @@ inputs:
       - entity: customer
         select: invoices_id
         type: invoice_id
-#      - entity: subscription
-#        select: invoices_id
-#        type: invoice_id
-#      - entity: subscription
-#        select: subscription
-#        type: subscription_id
+        #      - entity: subscription
+        #        select: invoices_id
+        #        type: invoice_id
+        #      - entity: subscription
+        #        select: subscription
+        #        type: subscription_id
       - entity: customer
         select: subscription
         type: subscription_id
@@ -54,9 +54,9 @@ inputs:
       - entity: customer
         select: id
         type: balance_transaction_id
-#      - entity: subscription
-#        select: id
-#        type: balance_transaction_id
+        #      - entity: subscription
+        #        select: id
+        #        type: balance_transaction_id
     name: stripeBalanceHistory
     occurred_at_col: created
     table: rudderstack_test_db.data_apps_simulated_stripe.stripe_balance_history
@@ -64,9 +64,9 @@ inputs:
       - entity: customer
         select: subscriptions_id
         type: subscription_id
-#      - entity: subscription
-#        select: subscriptions_id
-#        type: subscription_id
+        #      - entity: subscription
+        #        select: subscriptions_id
+        #        type: subscription_id
       - entity: customer
         select: customer
         type: customer_id
@@ -80,12 +80,12 @@ inputs:
       - entity: customer
         select: balance_transaction
         type: balance_transaction_id
-#      - entity: subscription
-#        select: charge
-#        type: charge_id
-#      - entity: subscription
-#        select: balance_transaction
-#        type: balance_transaction_id
+        #      - entity: subscription
+        #        select: charge
+        #        type: charge_id
+        #      - entity: subscription
+        #        select: balance_transaction
+        #        type: balance_transaction_id
     name: stripeRefunds
     occurred_at_col: created
     table: rudderstack_test_db.data_apps_simulated_stripe.stripe_refunds
