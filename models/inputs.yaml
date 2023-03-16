@@ -96,4 +96,4 @@ inputs:
     name: stripeInvoicesView
     occurred_at_col: invoice_created_timestamp
     view: rudderstack_test_db.data_apps_simulated_stripe.STG_INVOICES_DATA
-# this is a test comment
+# this is a test comment in a PR
