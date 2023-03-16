@@ -2,4 +2,4 @@
 
 Sample test wht projects
 
-schema version 18
+schema version updated to 19
