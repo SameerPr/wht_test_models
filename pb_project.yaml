@@ -48,5 +48,4 @@ model_folders:
   - models
 name: stripe_features
 profile: test
-schema_version: 19
-# test
+schema_version: 18
