@@ -1,3 +1,4 @@
+connection: test
 entities:
   - id_stitcher: models/customer_stripe_id_stitcher
     id_types:
@@ -8,13 +9,6 @@ entities:
       - subscription_id
       - charge_id
     name: customer
-#  - id_stitcher: models/subscription_stripe_id_stitcher
-#    id_types:
-#      - subscription_main_id
-#      - invoice_id
-#      - subscription_id
-#      - charge_id
-#    name: subscription
 id_types:
   - name: subscription_main_id
   - filters:
@@ -47,6 +41,4 @@ include_untimed: true
 model_folders:
   - models
 name: stripe_features
-profile: test
-schema_version: 19
-#testing
+schema_version: 27
