@@ -29,7 +29,13 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Test
-        run: echo ${{ matrix.siteconfig }}
+        run: |
+          if ${{ ${{ matrix.siteconfig }} == 'SITECONFIG_RS' }}
+          then
+            echo '--timeout 20'
+          else
+            echo '--timeout 15'
+          fi
         env:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
