@@ -1,0 +1,35 @@
+# Please update go version in go.mod also, if you update the go version here.
+name: Tests
+on:
+  push:
+    branches:
+      - 'main'
+      - 'Release*'
+  pull_request:
+    branches:
+      - 'main'
+      - 'Release*'
+      - '*'
+  workflow_dispatch:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ci_node_index: [0, 1, 2, 3, 4, 5, 6, 7]
+        ci_node_total: [8]
+        siteconfig: ['SITECONFIG_RS', 'SITECONFIG_SF', 'SITECONFIG_BQ']
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Test
+        run: echo ${{ matrix.siteconfig }}
+        env:
+          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
