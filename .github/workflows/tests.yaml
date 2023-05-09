@@ -30,8 +30,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Test
         run: |
-          if ${{ matrix.siteconfig }} == 'SITECONFIG_RS'
-          then
+          if [[ "${{ matrix.siteconfig }}" == "SITECONFIG_RS" ]]; then
             echo '--timeout 20'
           else
             echo '--timeout 15'
