@@ -29,7 +29,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Set up site config
-        run: 'echo "${{ secrets.SITECONFIG_NULL }}" | sed "s/OPENSSH_PRIVATE_KEY/$OPENSSH_PRIVATE_KEY/g" | sed "s/BASIC_AUTH_USERNAME/$BASIC_AUTH_USERNAME/g" | sed "s/BASIC_AUTH_PASSWORD/$BASIC_AUTH_PASSWORD/g" > tests/siteconfig.yaml'
+        run: 'echo "$SITECONFIG" | sed "s/OPENSSH_PRIVATE_KEY/$OPENSSH_PRIVATE_KEY/g" | sed "s/BASIC_AUTH_USERNAME/$BASIC_AUTH_USERNAME/g" | sed "s/BASIC_AUTH_PASSWORD/$BASIC_AUTH_PASSWORD/g" > tests/siteconfig.yaml'
+        env:
+          SITECONFIG: ${{secrets.SITECONFIG_NULL}}
       - name: Test
         run: cat tests/siteconfig.yaml
         env:
