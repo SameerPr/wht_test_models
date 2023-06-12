@@ -19,17 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+        ci_node_total: [ 8 ]
+        siteconfig: [ 'SITECONFIG_RS', 'SITECONFIG_SF', 'SITECONFIG_BQ' ]
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8 #install the python needed
-          cache: 'pip'
-      - name: install python dependencies
-        run: pip install -r samples/requirements.txt
+      - name: None Test
+        run: echo "Platform None"
       - name: Test
-        run: echo '--timeout 20'
+        run: echo "$CI_NODE_INDEX $CI_NODE_TOTAL"
+        env:
+          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          PLATFORM: ${{ matrix.siteconfig }}
