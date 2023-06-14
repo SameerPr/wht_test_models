@@ -1,0 +1,46 @@
+# Please update go version in go.mod also, if you update the go version here.
+name: Tests
+on:
+  push:
+    branches:
+      - 'main'
+      - 'Release*'
+  pull_request:
+    branches:
+      - 'main'
+      - 'Release*'
+      - '*'
+  workflow_dispatch:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+        ci_node_total: [ 8 ]
+        siteconfig: [ '$SITECONFIG_RS', '$SITECONFIG_SF', '$SITECONFIG_BQ' ]
+        test_set: [ 'WH_DEPENDENT' ]
+        include:
+          - ci_node_index: 0
+            ci_node_total: 1
+            siteconfig: '$SITECONFIG_NULL'
+            test_set: 'WH_INDEPENDENT'
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up site config
+        run: 'echo "$SITECONFIG" | sed "s/OPENSSH_PRIVATE_KEY/$OPENSSH_PRIVATE_KEY/g" | sed "s/BASIC_AUTH_USERNAME/$BASIC_AUTH_USERNAME/g" | sed "s/BASIC_AUTH_PASSWORD/$BASIC_AUTH_PASSWORD/g" > siteconfig.yaml'
+        env:
+          SITECONFIG: ${{secrets.SITECONFIG_NULL}}
+      - name: Test
+        run: echo $PLATFORM ${{ matrix.test_set }}
+        env:
+          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          PLATFORM: ${{ matrix.siteconfig }}
