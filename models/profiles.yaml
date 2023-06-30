@@ -1,6 +1,6 @@
 models:
   - name: customer_stripe_id_stitcher
-    model_type: id_stitcher
+    model_type: id_stitch
     model_spec:
       edge_sources:
         - inputs/stripeCustomers
