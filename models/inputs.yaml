@@ -1,99 +1,155 @@
 inputs:
-  - ids:
-      - entity: customer
-        select: customers_id
-        type: customer_id
-    name: stripeCustomers
-    occurred_at_col: timestamp
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_customers
-  - ids:
-      - entity: customer
-        select: customer
-        type: customer_id
-      - entity: customer
-        select: invoice
-        type: invoice_id
-#      - entity: subscription
-#        select: invoice
-#        type: invoice_id
-      - entity: customer
-        select: charges_id
-        type: charge_id
-#      - entity: subscription
-#        select: charges_id
-#        type: charge_id
-      - entity: customer
-        select: balance_transaction
-        type: balance_transaction_id
-#      - entity: subscription
-#        select: balance_transaction
-#        type: balance_transaction_id
-    name: stripeCharges
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_charges
-  - ids:
-      - entity: customer
-        select: invoices_id
-        type: invoice_id
-#      - entity: subscription
-#        select: invoices_id
-#        type: invoice_id
-#      - entity: subscription
-#        select: subscription
-#        type: subscription_id
-      - entity: customer
-        select: subscription
-        type: subscription_id
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeInvoices
-    occurred_at_col: to_timestamp(created)
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_invoices
-  - ids:
-      - entity: customer
-        select: id
-        type: balance_transaction_id
-#      - entity: subscription
-#        select: id
-#        type: balance_transaction_id
-    name: stripeBalanceHistory
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_balance_history
-  - ids:
-      - entity: customer
-        select: subscriptions_id
-        type: subscription_id
-#      - entity: subscription
-#        select: subscriptions_id
-#        type: subscription_id
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeSubscriptions
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_subscriptions
-  - ids:
-      - entity: customer
-        select: charge
-        type: charge_id
-      - entity: customer
-        select: balance_transaction
-        type: balance_transaction_id
-#      - entity: subscription
-#        select: charge
-#        type: charge_id
-#      - entity: subscription
-#        select: balance_transaction
-#        type: balance_transaction_id
-    name: stripeRefunds
-    occurred_at_col: created
-    table: rudderstack_test_db.data_apps_simulated_stripe.stripe_refunds
-  - ids:
-      - entity: customer
-        select: customer
-        type: customer_id
-    name: stripeInvoicesView
-    occurred_at_col: invoice_created_timestamp
-    view: rudderstack_test_db.data_apps_simulated_stripe.STG_INVOICES_DATA
-# this is a test comment
+  - name: stripeCustomers
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: timestamp
+        - name: customers_id
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_customers
+      occurred_at_col: timestamp
+      ids:
+        - entity: customer
+          select: customers_id
+          type: customer_id
+          to_default_stitcher: true
+  - name: stripeCharges
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: created
+        - name: customer
+        - name: invoice
+        - name: charges_id
+        - name: balance_transaction
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_charges
+      occurred_at_col: created
+      ids:
+        - entity: customer
+          select: customer
+          type: customer_id
+          to_default_stitcher: true
+        - entity: customer
+          select: invoice
+          type: invoice_id
+          to_default_stitcher: true
+        - entity: customer
+          select: charges_id
+          type: charge_id
+          to_default_stitcher: true
+        - entity: customer
+          select: balance_transaction
+          type: balance_transaction_id
+          to_default_stitcher: true
+  - name: stripeInvoices
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: to_timestamp(created)
+        - name: invoices_id
+        - name: subscription
+        - name: customer
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_invoices
+      occurred_at_col: to_timestamp(created)
+      ids:
+        - entity: customer
+          select: invoices_id
+          type: invoice_id
+          to_default_stitcher: true
+        - entity: customer
+          select: subscription
+          type: subscription_id
+          to_default_stitcher: true
+        - entity: customer
+          select: customer
+          type: customer_id
+          to_default_stitcher: true
+  - name: stripeBalanceHistory
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: created
+        - name: id
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_balance_history
+      occurred_at_col: created
+      ids:
+        - entity: customer
+          select: id
+          type: balance_transaction_id
+          to_default_stitcher: true
+  - name: stripeSubscriptions
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: created
+        - name: subscriptions_id
+        - name: customer
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_subscriptions
+      occurred_at_col: created
+      ids:
+        - entity: customer
+          select: subscriptions_id
+          type: subscription_id
+          to_default_stitcher: true
+        - entity: customer
+          select: customer
+          type: customer_id
+          to_default_stitcher: true
+  - name: stripeRefunds
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: created
+        - name: charge
+        - name: balance_transaction
+    app_defaults:
+      table: rudderstack_test_db.data_apps_simulated_stripe.stripe_refunds
+      occurred_at_col: created
+      ids:
+        - entity: customer
+          select: charge
+          type: charge_id
+          to_default_stitcher: true
+        - entity: customer
+          select: balance_transaction
+          type: balance_transaction_id
+          to_default_stitcher: true
+  - name: stripeInvoicesView
+    contract:
+      is_optional: false
+      is_event_stream: true
+      with_entity_ids:
+        - customer
+      with_columns:
+        - name: invoice_created_timestamp
+        - name: customer
+    app_defaults:
+      view: rudderstack_test_db.data_apps_simulated_stripe.STG_INVOICES_DATA
+      occurred_at_col: invoice_created_timestamp
+      ids:
+        - entity: customer
+          select: customer
+          type: customer_id
+          to_default_stitcher: true

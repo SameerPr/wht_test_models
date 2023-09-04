@@ -1,0 +1,5 @@
+macros:
+  - inputs:
+      - timestamp_col
+    name: macro_datediff
+    value: datediff(day, date({{timestamp_col}}), to_timestamp_tz(replace('{{end_time}}',' UTC')))

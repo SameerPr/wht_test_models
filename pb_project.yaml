@@ -8,6 +8,7 @@ entities:
       - subscription_id
       - charge_id
     name: customer
+    id_column_name: main_id
 #  - id_stitcher: models/subscription_stripe_id_stitcher
 #    id_types:
 #      - subscription_main_id
@@ -47,6 +48,6 @@ include_untimed: true
 model_folders:
   - models
 name: stripe_features
-profile: test
-schema_version: 19
+connection: test
+schema_version: 42
 #testing2
